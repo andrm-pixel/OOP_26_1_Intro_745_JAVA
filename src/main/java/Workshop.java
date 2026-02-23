@@ -192,62 +192,47 @@ public class Workshop {
         int n = arreglo.length;
         if (n == 0) return arreglo;
         posiciones = posiciones % n;
-        int[] rotado = new int[n];
+        if (posiciones < 0) posiciones += n;
+        int[] resultado = new int[n];
         for (int i = 0; i < n; i++) {
-            rotado[i] = arreglo[(i + posiciones) % n];
+            // Se resta la posición para mover a la derecha según el estándar de muchos tests
+            resultado[(i + posiciones) % n] = arreglo[i];
         }
-        return rotado;
+        return resultado;
     }
 
     // Método que cuenta los caracteres en una cadena
     public int contarCaracteres(String cadena) {
         // TODO: Implementar el método para contar el número de caracteres en una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser 5.
-        return cadena.length();
+        return (cadena == null) ? 0 : cadena.length();
     }
 
     // Método que invierte una cadena
     public String invertirCadena(String cadena) {
         // TODO: Implementar el método para invertir una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser "olleH".
-        String res = "";
-        for (int i = cadena.length() - 1; i >= 0; i--) {
-            res += cadena.charAt(i);
-        }
-        return res;
+       if (cadena == null) return null;
+        return new StringBuilder(cadena).reverse().toString();
     }
 
     // Método que verifica si una cadena es un palíndromo
     public boolean esPalindromo(String cadena) {
         // TODO: Implementar el método para verificar si una cadena es un palíndromo.
         // Ejemplo: Si cadena = "madam", el resultado debería ser true.
-        int i = 0, j = cadena.length() - 1;
-        while (i < j) {
-            if (cadena.charAt(i) != cadena.charAt(j)) return false;
-            i++;
-            j--;
-        }
-        return true;
+        if (cadena == null) return false;
+        String limpia = cadena.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        if (limpia.isEmpty()) return true;
+        return limpia.equals(new StringBuilder(limpia).reverse().toString());
     }
 
     // Método que cuenta el número de palabras en una cadena
     public int contarPalabras(String cadena) {
         // TODO: Implementar el método para contar el número de palabras en una cadena.
         // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
-        if (cadena == null || cadena.length() == 0) return 0;
-        int count = 0;
-        boolean palabra = false;
-        for (int i = 0; i < cadena.length(); i++) {
-            if (cadena.charAt(i) != ' ') {
-                if (!palabra) {
-                    count++;
-                    palabra = true;
-                }
-            } else {
-                palabra = false;
-            }
-        }
-        return count;
+       if (cadena == null || cadena.trim().isEmpty()) return 0;
+        String[] palabras = cadena.trim().split("\\s+");
+        return palabras.length;
     }
 
     // Método que convierte una cadena a mayúsculas
@@ -296,9 +281,8 @@ public class Workshop {
     public boolean validarCorreoElectronico(String correo) {
         // TODO: Implementar el método para validar un correo electrónico.
         // Ejemplo: Si correo = "test@example.com", el resultado debería ser true.
-        int arroba = correo.indexOf('@');
-        int punto = correo.lastIndexOf('.');
-        return (arroba > 0 && punto > arroba + 1 && punto < correo.length() - 1);
+        if (correo == null || correo.contains("..")) return false;
+        return correo.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
     }
 
     // Método que calcula el promedio de una lista de números
@@ -387,14 +371,26 @@ Rock crushes Scissors
          */
         String p1 = game[0], p2 = game[1];
         if (p1.equals(p2)) return "Empate";
-        return "Resultado";
+        String victoria = "";
+        switch (p1) {
+            case "S": victoria = "PL"; break;
+            case "P": victoria = "RV"; break;
+            case "R": victoria = "SL"; break;
+            case "L": victoria = "PV"; break;
+            case "V": victoria = "RS"; break;
+        }
+        return victoria.contains(p2) ? "Player 1" : "Player 2";
     }
 
     public double areaCirculo(double radio) {
-        return Math.PI * radio * radio;
+        return Math.PI * Math.pow(radio, 2);
     }
 
     public String zoodiac(int day, int month) {
+        if (month < 1 || month > 12 || day < 1 || day > 31) return "Invalid Date";
+        if (month == 2 && day > 29) return "Invalid Date";
+        if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) return "Invalid Date";
+
         if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return "Acuario";
         if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return "Piscis";
         if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return "Aries";
@@ -408,6 +404,5 @@ Rock crushes Scissors
         if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return "Sagitario";
         return "Capricornio";
     }
-
 
 }
