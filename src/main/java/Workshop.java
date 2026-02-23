@@ -319,12 +319,14 @@ public class Workshop {
         // TODO: Implementar el método para convertir un número en su representación binaria.
         // Ejemplo: Si numero = 10, el resultado debería ser "1010".
         if (numero == 0) return "0";
+        boolean esNegativo = numero < 0;
+        int n = Math.abs(numero);
         String bin = "";
-        while (numero > 0) {
-            bin = (numero % 2) + bin;
-            numero /= 2;
+        while (n > 0) {
+            bin = (n % 2) + bin;
+            n /= 2;
         }
-        return bin;
+        return (esNegativo ? "-" : "") + bin;
     }
 
     // Método que convierte un número en su representación hexadecimal
@@ -332,13 +334,15 @@ public class Workshop {
         // TODO: Implementar el método para convertir un número en su representación hexadecimal.
         // Ejemplo: Si numero = 255, el resultado debería ser "FF".
         if (numero == 0) return "0";
+        boolean esNegativo = numero < 0;
+        int n = Math.abs(numero);
         String hex = "";
         char[] digitos = "0123456789ABCDEF".toCharArray();
-        while (numero > 0) {
-            hex = digitos[numero % 16] + hex;
-            numero /= 16;
+        while (n > 0) {
+            hex = digitos[n % 16] + hex;
+            n /= 16;
         }
-        return hex;
+        return (esNegativo ? "-" : "") + hex;
     }
 
     // Método para el juego de piedra, papel, tijera, lagarto, Spock
@@ -387,7 +391,7 @@ Rock crushes Scissors
     }
 
     public double areaCirculo(double radio) {
-        return 3.14159 * radio * radio;
+        return Math.PI * radio * radio;
     }
 
     public String zoodiac(int day, int month) {
