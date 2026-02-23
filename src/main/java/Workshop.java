@@ -231,9 +231,8 @@ public class Workshop {
     public int contarPalabras(String cadena) {
         // TODO: Implementar el método para contar el número de palabras en una cadena.
         // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
-       if (cadena == null || cadena.trim().isEmpty()) return 0;
-    String[] palabras = cadena.trim().split("\\s+");
-    return palabras.length;
+      if (cadena == null || cadena.trim().isEmpty()) return 0;
+        return cadena.trim().split("\\s+").length;
     }
 
     // Método que convierte una cadena a mayúsculas
@@ -384,7 +383,7 @@ Rock crushes Scissors
     }
 
     public double areaCirculo(double radio) {
-        return Math.PI * radio * radio;
+        return Math.PI * (radio * radio);
     }
 
     public String zoodiac(int day, int month) {
