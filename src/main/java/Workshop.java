@@ -205,7 +205,8 @@ public class Workshop {
     public int contarCaracteres(String cadena) {
         // TODO: Implementar el método para contar el número de caracteres en una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser 5.
-        return (cadena == null) ? 0 : cadena.length();
+        if (cadena == null) return 0;
+    	return cadena.length();
     }
 
     // Método que invierte una cadena
@@ -213,7 +214,7 @@ public class Workshop {
         // TODO: Implementar el método para invertir una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser "olleH".
        if (cadena == null) return null;
-        return new StringBuilder(cadena).reverse().toString();
+    return new StringBuilder(cadena).reverse().toString();
     }
 
     // Método que verifica si una cadena es un palíndromo
@@ -231,8 +232,8 @@ public class Workshop {
         // TODO: Implementar el método para contar el número de palabras en una cadena.
         // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
        if (cadena == null || cadena.trim().isEmpty()) return 0;
-        String[] palabras = cadena.trim().split("\\s+");
-        return palabras.length;
+    String[] palabras = cadena.trim().split("\\s+");
+    return palabras.length;
     }
 
     // Método que convierte una cadena a mayúsculas
@@ -383,7 +384,7 @@ Rock crushes Scissors
     }
 
     public double areaCirculo(double radio) {
-        return Math.PI * Math.pow(radio, 2);
+        return Math.PI * radio * radio;
     }
 
     public String zoodiac(int day, int month) {
@@ -391,18 +392,18 @@ Rock crushes Scissors
         if (month == 2 && day > 29) return "Invalid Date";
         if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) return "Invalid Date";
 
-        if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return "Acuario";
-        if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return "Piscis";
+        if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return "Acuarius";
+        if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return "Pisces";
         if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return "Aries";
-        if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return "Tauro";
-        if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return "Géminis";
-        if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return "Cáncer";
+        if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return "Taurus";
+        if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return "Gemini";
+        if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return "Cancer";
         if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return "Leo";
         if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return "Virgo";
         if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return "Libra";
-        if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return "Escorpio";
-        if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return "Sagitario";
-        return "Capricornio";
+        if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return "Scorpio";
+        if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return "Sagittarius";
+        return "Capricorn";
     }
 
 }
