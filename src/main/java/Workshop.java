@@ -205,8 +205,10 @@ public class Workshop {
     public int contarCaracteres(String cadena) {
         // TODO: Implementar el método para contar el número de caracteres en una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser 5.
-        if (cadena == null) return 0;
-    	return cadena.length();
+        if (cadena == null) {
+            return 0;
+        }
+        return cadena.length();
     }
 
     // Método que invierte una cadena
@@ -214,7 +216,7 @@ public class Workshop {
         // TODO: Implementar el método para invertir una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser "olleH".
        if (cadena == null) return null;
-    return new StringBuilder(cadena).reverse().toString();
+        return new StringBuilder(cadena).reverse().toString();
     }
 
     // Método que verifica si una cadena es un palíndromo
@@ -231,8 +233,12 @@ public class Workshop {
     public int contarPalabras(String cadena) {
         // TODO: Implementar el método para contar el número de palabras en una cadena.
         // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
-      if (cadena == null || cadena.trim().isEmpty()) return 0;
-        return cadena.trim().split("\\s+").length;
+      if (cadena == null || cadena.trim().isEmpty()) {
+            return 0;
+        }
+        String[] palabras = cadena.trim().split("\\s+");
+        
+        return palabras.length;
     }
 
     // Método que convierte una cadena a mayúsculas
